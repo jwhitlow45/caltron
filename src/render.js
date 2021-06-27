@@ -1,3 +1,4 @@
+
 // event listener for nav bar arrows
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
@@ -24,4 +25,4 @@ function makeRows(rows, cols) {
     container.appendChild(cell).className = "column";
   }
 }
-makeRows(5, 7);
+makeRows(6, 7);
