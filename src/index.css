@@ -57,11 +57,14 @@ body {
 
 #calendar-grid {
   display: grid;
-
+  
   /*grid cols and rows*/
   grid-template-rows: repeat(var(--grid-rows), 1fr);
   grid-template-columns: repeat(var(--grid-cols), 1fr);
-  
+
+  /* sizing */
+  height: calc(100% - 135px);
+
   /* spacing */
   margin-left: 20px;
   margin-right: 20px;
@@ -69,7 +72,6 @@ body {
 }
 
 #day {
-
   /* sizing */
   min-height: 75px;
   max-height: none;
