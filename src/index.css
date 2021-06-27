@@ -1,13 +1,22 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+/* globals */
 :root {
   --grid-cols: 1;
   --grid-rows: 1;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 #nav-bar {
-  min-width: 740px;
+  /* sizing */
   font-size: 1.25em;
+  min-width: 740px;
+
+  /* spacing */
   padding-top: 1em;
   text-align: center;
 }
@@ -20,13 +29,17 @@
   cursor: pointer;
 }
 
+#calendar {
+  height: 100%;
+}
+
 #weekday-header {
   display: grid;
 
   /*grid cols and rows*/
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(7, 1fr);
-  
+
   /*spacing*/
   margin-left: 20px;
   margin-right: 20px;
@@ -34,27 +47,35 @@
 }
 
 #weekday-text {
+  /* spacing */
   text-align: center;
+
+  /* sizing */
   min-width: 100px;
   max-width: none;
 }
 
 #calendar-grid {
   display: grid;
+
+  /*grid cols and rows*/
   grid-template-rows: repeat(var(--grid-rows), 1fr);
   grid-template-columns: repeat(var(--grid-cols), 1fr);
   
+  /* spacing */
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
 
-.column {
-  padding: 25%;
+#day {
+
+  /* sizing */
   min-height: 75px;
   max-height: none;
   min-width: 100px;
   max-width: none;
+
+  /* colors */
   border: 1px solid #ddd;
-  text-align: center;
 }
