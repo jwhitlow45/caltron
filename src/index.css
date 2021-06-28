@@ -14,7 +14,7 @@ body {
 #nav-bar {
   /* sizing */
   font-size: 1.25em;
-  min-width: 740px;
+  min-width: 754px;
 
   /* spacing */
   padding-top: 1em;
@@ -65,15 +65,13 @@ body {
 
   /* sizing */
   height: calc(100% - 135px);
-  min-width: 700px;
+  min-width: 714px;
 
   /* spacing */
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
 
-  /* colors */
-  border: 1px solid black;
 }
 
 #day,
@@ -83,6 +81,12 @@ body {
   max-height: none;
   min-width: 100px;
   max-width: none;
+  font-size: 0.75em;
+
+  /* spacing */
+  padding: 10px;
+  padding-top: 8px;
+  margin: 1px;
 }
 
 #day {
