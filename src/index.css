@@ -4,13 +4,27 @@
 :root {
   --grid-cols: 1;
   --grid-rows: 1;
+  --background-color: #474448;
+  --month-font-color: #f1f0ea;
+  --arrow-button-color: #e0ddcf;
+  --arrow-button-click-color: #000000;
+  --weekday-header-font-color: #f1f0ea;
+  --day-num-font-color: #e0ddcf;
+  --grid-day-color: #e0ddcf;
+  --grid-padding-color: #534b52;
+  --grid-today-color: #f1f0ea;
 }
 
 html,
 body {
+  /* sizing */
   height: 100%;
+
+  /* colors */
+  background-color: var(--background-color);
 }
 
+/* month selector */
 #nav-bar {
   /* sizing */
   font-size: 1.25em;
@@ -22,14 +36,27 @@ body {
 }
 
 #date {
+  /* spacing */
   line-height: 0.75em;
   min-width: 250px;
+
+  /* colors */
+  color: var(--month-font-color);
 }
 
-.icon:hover {
+#arrow {
+  color: var(--arrow-button-color);
+}
+
+#arrow:focus {
+  color: var(--arrow-button-click-color);
+}
+
+#arrow:hover {
   cursor: pointer;
 }
 
+/* calendar */
 #calendar {
   height: 100%;
 }
@@ -54,6 +81,9 @@ body {
   /* sizing */
   min-width: 100px;
   max-width: none;
+
+  /* colors */
+  color: var(--weekday-header-font-color);
 }
 
 #calendar-grid {
@@ -71,10 +101,10 @@ body {
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
-
 }
 
 #day,
+#today,
 #padding {
   /* sizing */
   min-height: 75px;
@@ -87,13 +117,22 @@ body {
   padding: 10px;
   padding-top: 8px;
   margin: 1px;
+
+  /* colors */
+  color: var(--day-num-font-color);
 }
 
 #day {
-  border: 1px solid black;
+  /* colors */
+  border: 1px solid var(--grid-day-color);
 }
 
 #padding {
   /* colors */
-  border: 1px solid #ddd
+  border: 1px solid var(--grid-padding-color);
+}
+
+#today {
+  /* colors */
+  border: 1px solid var(--grid-today-color);
 }
