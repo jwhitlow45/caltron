@@ -1,4 +1,4 @@
-//global values
+/*------Global values------*/
 //grid size
 const cols = 7;
 const rows = 6;
@@ -14,33 +14,74 @@ const days = [
   "Saturday",
 ];
 
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 var cur_month = new Date(); //month of current calendar view
 cur_month.setDate(1); //set to first of month to avoid conflict with certain months
+//end global values
 
-// event listener for nav bar arrows
+/*------Event listeners------*/
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
 
+/*------Button behavior------*/
+// move calendar back one month
 function moveLeft() {
-  cur_month = cur_month.setMonth(cur_month.getMonth() - 1);
-  refreshCalendar(getPaddingDays(cur_month));
+  cur_month.setMonth(cur_month.getMonth() - 1);
+  refreshCalendar();
 }
 
+// move calendar forward one month
 function moveRight() {
-  month_page++;
+  cur_month.setMonth(cur_month.getMonth() + 1);
+  refreshCalendar();
 }
 
+/*------Date helper functions------*/
+//gets number of days in a certain month
 function daysInMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 
 //gets number of padding days in a certain month
 function getPaddingDays(date) {
   date.setDate(1);
   return date.getDay();
+}
+
+/*------UI Functions------*/
+function refreshCalendar() {
+  //select calendar grid
+  const calendar_grid = document.getElementById("calendar-grid");
+  //remove all contents from div
+  removeChildren(calendar_grid);
+  //refresh calendar header
+  setDateTitle();
+  //recreate calendar grid
+  makeCalendarGrid();
+}
+
+//set date title to proper month and year
+function setDateTitle() {
+  const month_header = document.getElementById("date");
+  month_header.innerText =
+    months[cur_month.getMonth()] + " " + cur_month.getFullYear();
 }
 
 //creates header with weekday titles
@@ -55,13 +96,15 @@ function makeWeekdayHeader() {
 }
 
 // draw month view grid
-function makeCalendarGrid(padding_days) {
+function makeCalendarGrid() {
   const calendar_grid = document.getElementById("calendar-grid");
+  const padding_days = getPaddingDays(cur_month);
+  const days_in_month = daysInMonth(cur_month);
   calendar_grid.style.setProperty("--grid-rows", rows);
   calendar_grid.style.setProperty("--grid-cols", cols);
   for (c = 0; c < rows * cols; c++) {
     let cell = document.createElement("div");
-    if (c < padding_days || c > daysInMonth(cur_month)) {
+    if (c < padding_days || c > days_in_month + padding_days - 1) {
       cell.id = "padding";
     } else {
       cell.id = "day";
@@ -71,17 +114,8 @@ function makeCalendarGrid(padding_days) {
   }
 }
 
-function refreshCalendar(padding_days) {
-  //select calendar grid
-  const calendar_grid = document.getElementById("calendar-grid");
-  //remove all contents from div
-  removeChildren(calendar_grid);
-  //recreate calendar grid
-  makeCalendarGrid(padding_days)
-}
-
 //remove all children from a div
-function removeChildren(parent){
+function removeChildren(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
@@ -90,7 +124,7 @@ function removeChildren(parent){
 //functions to run on startup
 function startup() {
   makeWeekdayHeader();
-  refreshCalendar(getPaddingDays(cur_month));
+  refreshCalendar();
 }
 
 startup();

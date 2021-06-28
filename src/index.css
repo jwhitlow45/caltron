@@ -23,6 +23,7 @@ body {
 
 #date {
   line-height: 0.75em;
+  min-width: 250px;
 }
 
 .icon:hover {
@@ -64,11 +65,15 @@ body {
 
   /* sizing */
   height: calc(100% - 135px);
+  min-width: 700px;
 
   /* spacing */
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;
+
+  /* colors */
+  border: 1px solid black;
 }
 
 #day,
