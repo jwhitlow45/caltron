@@ -1,0 +1,31 @@
+/* month selector */
+#nav-bar {
+  /* sizing */
+  font-size: 1.25em;
+  min-width: 754px;
+
+  /* spacing */
+  padding-top: 1em;
+  text-align: center;
+}
+
+#date {
+  /* spacing */
+  line-height: 0.75em;
+  min-width: 250px;
+
+  /* colors */
+  color: var(--month-font-color);
+}
+
+#arrow {
+  color: var(--arrow-button-color);
+}
+
+#arrow:focus {
+  color: var(--arrow-button-click-color);
+}
+
+#arrow:hover {
+  cursor: pointer;
+}

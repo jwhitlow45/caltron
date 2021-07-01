@@ -1,0 +1,84 @@
+/* calendar */
+#calendar {
+  height: calc(100% - 68px);
+  margin-bottom: 0px;
+}
+
+#weekday-header {
+  display: grid;
+
+  /*grid cols and rows*/
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+
+  /*spacing*/
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 2em;
+}
+
+#weekday-text {
+  /* spacing */
+  text-align: center;
+
+  /* sizing */
+  min-width: 100px;
+  max-width: none;
+
+  /* colors */
+  color: var(--weekday-header-font-color);
+}
+
+#calendar-grid {
+  display: grid;
+
+  /*grid cols and rows*/
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+
+  /* sizing */
+  height: calc(100% - 68px);
+  min-width: 714px;
+
+  /* spacing */
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#day,
+#today,
+#padding {
+  /* sizing */
+  min-height: 75px;
+  max-height: none;
+  min-width: 100px;
+  max-width: none;
+  font-size: 0.75em;
+
+  /* border */
+  /* border-radius: 10%; */
+
+  /* spacing */
+  padding: 10px;
+  padding-top: 8px;
+  margin: 1px;
+}
+
+#day {
+  /* colors */
+  border: 1px solid var(--grid-day-color);
+  color: var(--day-num-font-color);
+}
+
+#padding {
+  /* colors */
+  border: 1px solid var(--grid-padding-color);
+  color: var(--padding-num-font-color);
+}
+
+#today {
+  /* colors */
+  border: 1px solid var(--grid-today-color);
+  color: var(--today-num-font-color);
+}
