@@ -4,7 +4,7 @@ const cols = 7;
 var rows = 6;
 
 //first day of the week
-var first_day_of_week = 1;
+var first_day_of_week = 6;
 
 //list of days
 day_list = [];
