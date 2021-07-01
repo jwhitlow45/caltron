@@ -1,6 +1,7 @@
 /* calendar */
 #calendar {
-  height: 100%;
+  height: calc(100% - 68px);
+  margin-bottom: 0px;
 }
 
 #weekday-header {
@@ -36,7 +37,7 @@
   grid-template-columns: repeat(var(--grid-cols), 1fr);
 
   /* sizing */
-  height: calc(100% - 135px);
+  height: calc(100% - 68px);
   min-width: 714px;
 
   /* spacing */
