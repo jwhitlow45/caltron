@@ -6,14 +6,14 @@ function getDaysInMonth(date) {
 
 //gets number of padding days before a certain month
 function getBeforePaddingDays(date) {
-  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  if (padding_days == 0) padding_days = 7;
+  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay() - first_day_of_week;
+  if (padding_days == first_day_of_week) padding_days = 7;
   return padding_days;
 }
 
 //gets number of padding days after a certain month
 function getAfterPaddingDays(date) {
-  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month);
+  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month) + first_day_of_week;
 }
 
 function isSameDate(first_date, second_date) {

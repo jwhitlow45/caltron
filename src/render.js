@@ -29,7 +29,7 @@ function makeWeekdayHeader() {
   const weekday_header = document.getElementById("weekday-header");
   for (i = 0; i < 7; i++) {
     let day = document.createElement("div");
-    day.innerText = days[i];
+    day.innerText = days[(i + first_day_of_week) % 7];
     day.id = "weekday-text";
     weekday_header.appendChild(day);
   }
