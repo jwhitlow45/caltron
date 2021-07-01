@@ -1,82 +1,13 @@
-//Global values
-const calendar = document.getElementById("calendar"); // calendar div
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const today = new Date(); //today
-var cur_month = new Date(); //month of current calendar view
-cur_month.setDate(1); //set to first of month to avoid conflict with certain months
-
-/*------Date helper functions------*/
-//gets number of days in a certain month
-function daysInMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-}
-
-function daysInPrevMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-}
-
-//gets number of padding days in a certain month
-function getPaddingDays(date) {
-  date.setDate(1);
-  return date.getDay();
-}
-
 /*------UI Functions------*/
-function refreshCalendar() {
-  //select calendar grid
-  const calendar_grid = document.getElementById("calendar-grid");
-  //remove all contents from div
-  removeChildren(calendar_grid);
-  //refresh calendar header
-  setDateTitle();
-  //recreate calendar grid
-  makeCalendarGrid();
-}
-
 //set date title to proper month and year
-function setDateTitle() {
+function setMonthDateTitle() {
   const month_header = document.getElementById("date");
   month_header.innerText =
     months[cur_month.getMonth()] + " " + cur_month.getFullYear();
 }
 
-//creates header with weekday titles
-function makeWeekdayHeader() {
-  const weekday_header = document.getElementById("weekday-header");
-  for (i = 0; i < 7; i++) {
-    let day = document.createElement("div");
-    day.innerText = days[i];
-    day.id = "weekday-text";
-    weekday_header.appendChild(day);
-  }
-}
-
 // draw month view grid
-function makeCalendarGrid() {
+function makeMonthCalendarGrid() {
   const calendar_grid = document.getElementById("calendar-grid");
   const padding_days = getPaddingDays(cur_month); //number of days to pad at start of first week
   const days_in_month = daysInMonth(cur_month); //number of days in current month
@@ -102,12 +33,5 @@ function makeCalendarGrid() {
       }
     }
     calendar_grid.appendChild(cell).className = "column";
-  }
-}
-
-//remove all children from a div
-function removeChildren(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
   }
 }
