@@ -35,6 +35,10 @@ function daysInMonth(date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 
+function daysInPrevMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+}
+
 //gets number of padding days in a certain month
 function getPaddingDays(date) {
   date.setDate(1);
@@ -76,14 +80,17 @@ function makeCalendarGrid() {
   const calendar_grid = document.getElementById("calendar-grid");
   const padding_days = getPaddingDays(cur_month); //number of days to pad at start of first week
   const days_in_month = daysInMonth(cur_month); //number of days in current month
+  const days_in_prev_month = daysInPrevMonth(cur_month); //number of days in previous month
   calendar_grid.style.setProperty("--grid-rows", rows);
   calendar_grid.style.setProperty("--grid-cols", cols);
   for (c = 0; c < rows * cols; c++) {
     let cell = document.createElement("div");
     if (c < padding_days) {
       cell.id = "padding"; //set cell as not in cur month
+      cell.innerText = days_in_prev_month + c - padding_days + 1;
     } else if (c > days_in_month + padding_days - 1) {
       cell.id = "padding"; //set cell as not in cur month
+      cell.innerText = c - days_in_month - padding_days + 1;
     } else {
       num_date = c - padding_days + 1;
       cell.id = "day"; //set cell as in cur month

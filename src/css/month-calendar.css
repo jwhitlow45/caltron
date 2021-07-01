@@ -55,26 +55,29 @@
   max-width: none;
   font-size: 0.75em;
 
+  /* border */
+  /* border-radius: 10%; */
+
   /* spacing */
   padding: 10px;
   padding-top: 8px;
   margin: 1px;
-
-  /* colors */
-  color: var(--day-num-font-color);
 }
 
 #day {
   /* colors */
   border: 1px solid var(--grid-day-color);
+  color: var(--day-num-font-color);
 }
 
 #padding {
   /* colors */
   border: 1px solid var(--grid-padding-color);
+  color: var(--padding-num-font-color);
 }
 
 #today {
   /* colors */
   border: 1px solid var(--grid-today-color);
+  color: var(--today-num-font-color);
 }

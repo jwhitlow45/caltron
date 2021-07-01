@@ -4,15 +4,25 @@
 :root {
   --grid-cols: 1;
   --grid-rows: 1;
+
+  /* background colors */
   --background-color: #474448;
+
+  /* font colors */
   --month-font-color: #f1f0ea;
-  --arrow-button-color: #e0ddcf;
-  --arrow-button-click-color: #000000;
   --weekday-header-font-color: #f1f0ea;
   --day-num-font-color: #e0ddcf;
+  --padding-num-font-color: #534b52;
+  --today-num-font-color: white;
+
+  /* arrow colors */
+  --arrow-button-color: #e0ddcf;
+  --arrow-button-click-color: #000000;
+
+  /* grid colors */
   --grid-day-color: #e0ddcf;
   --grid-padding-color: #534b52;
-  --grid-today-color: #f1f0ea;
+  --grid-today-color: white;
 }
 
 html,
