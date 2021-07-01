@@ -58,9 +58,21 @@ function makeMonthCalendarGrid() {
   for (c = 0; c < rows * cols; c++) {
     let cell = document.createElement("div");
     cell.innerText = day_list[c].getDate().getDate();
-    if (day_list[c].getIsPadding()) cell.id = "padding";
-    else if (day_list[c].getDate() == today) cell.id = "today";
-    else cell.id = "day";
+
+    if (day_list[c].getIsPadding()) {
+      // mark as padding day
+      cell.id = "padding";
+    } else if (
+      day_list[c].getDate().getDate() == today.getDate() &&
+      day_list[c].getDate().getMonth() == today.getMonth() &&
+      day_list[c].getDate().getFullYear() == today.getFullYear()
+    ) {
+      // mark as today
+      cell.id = "today";
+    } else {
+      // mark as day in cur month
+      cell.id = "day";
+    }
 
     calendar_grid.appendChild(cell).className = "column";
   }
