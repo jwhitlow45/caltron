@@ -8,13 +8,17 @@ right_arrow.addEventListener("click", moveRight);
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  cur_month.setMonth(cur_month.getMonth() - 1);
+  next_month  = new Date(cur_month);
+  cur_month = new Date(prev_month);
+  prev_month.setMonth(cur_month.getMonth() - 1);
   refreshCalendar();
 }
 
 // move calendar forward one month
 function moveRight() {
-  cur_month.setMonth(cur_month.getMonth() + 1);
+  prev_month = new Date(cur_month);
+  cur_month = new Date(next_month);
+  next_month.setMonth(cur_month.getMonth() + 1);
   refreshCalendar();
 }
 
@@ -38,6 +42,8 @@ function refreshCalendar() {
   removeChildren(calendar_grid);
   //refresh calendar header
   setMonthDateTitle();
+  //clear out day list deleting objects along the way
+  day_list.splice(0, day_list.length)
   //recreate calendar grid
   makeMonthCalendarGrid();
 }

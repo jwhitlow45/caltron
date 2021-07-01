@@ -6,32 +6,53 @@ function setMonthDateTitle() {
     months[cur_month.getMonth()] + " " + cur_month.getFullYear();
 }
 
-// draw month view grid
+//create day list for current month
+function createMonthDayList() {
+  const days_in_cur_month = getDaysInMonth(cur_month);
+  const days_in_prev_month = getDaysInMonth(prev_month);
+  const before_padding_days = getBeforePaddingDays(cur_month);
+  for (c = 0; c < rows * cols; c++) {
+    if (c < padding_days) {
+      temp_date = new Date(
+        prev_month.getFullYear(),
+        prev_month.getMonth(),
+        days_in_prev_month + c - before_padding_days + 1
+      );
+      day_list.push(new Day(temp_date, true));
+    } else if (c > days_in_cur_month + before_padding_days - 1) {
+      temp_date = new Date(
+        next_month.getFullYear(),
+        next_month.getMonth(),
+        c - days_in_cur_month - before_padding_days + 1
+      );
+      day_list.push(new Day(temp_date, true));
+    } else {
+      temp_date = new Date(
+        cur_month.getFullYear(),
+        cur_month.getMonth(),
+        c - before_padding_days + 1
+      );
+      day_list.push(new Day(temp_date, false));
+    }
+  }
+}
+
+//draw month view grid
 function makeMonthCalendarGrid() {
   const calendar_grid = document.getElementById("calendar-grid");
-  const padding_days = getPaddingDays(cur_month); //number of days to pad at start of first week
-  const days_in_month = daysInMonth(cur_month); //number of days in current month
-  const days_in_prev_month = daysInPrevMonth(cur_month); //number of days in previous month
+
+  createMonthDayList();
+
   calendar_grid.style.setProperty("--grid-rows", rows);
   calendar_grid.style.setProperty("--grid-cols", cols);
+
   for (c = 0; c < rows * cols; c++) {
     let cell = document.createElement("div");
-    if (c < padding_days) {
-      cell.id = "padding"; //set cell as not in cur month
-      cell.innerText = days_in_prev_month + c - padding_days + 1;
-    } else if (c > days_in_month + padding_days - 1) {
-      cell.id = "padding"; //set cell as not in cur month
-      cell.innerText = c - days_in_month - padding_days + 1;
-    } else {
-      num_date = c - padding_days + 1;
-      cell.id = "day"; //set cell as in cur month
-      //set inner text to match dates
-      cell.innerText = num_date;
-      //highlight todays date
-      if (num_date == today.getDate()) {
-        cell.id = "today";
-      }
-    }
+    cell.innerText = day_list[c].getDate().getDate();
+    if (day_list[c].getIsPadding()) cell.id = "padding";
+    else if (day_list[c].getDate() == today) cell.id = "today";
+    else cell.id = "day";
+
     calendar_grid.appendChild(cell).className = "column";
   }
 }

@@ -1,18 +1,19 @@
 /*------Date helper functions------*/
 //gets number of days in a certain month
-function daysInMonth(date) {
+function getDaysInMonth(date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 
-//gets number of days in a month before a certain month
-function daysInPrevMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+//gets number of padding days before a certain month
+function getBeforePaddingDays(date) {
+  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  if (padding_days == 0) padding_days = 7;
+  return padding_days;
 }
 
-//gets number of padding days in a certain month
-function getPaddingDays(date) {
-  date.setDate(1);
-  return date.getDay();
+//gets number of padding days after a certain month
+function getAfterPaddingDays(date) {
+  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month);
 }
 
 /*------HTML helper functions------*/
