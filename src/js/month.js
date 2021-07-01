@@ -62,11 +62,7 @@ function makeMonthCalendarGrid() {
     if (day_list[c].getIsPadding()) {
       // mark as padding day
       cell.id = "padding";
-    } else if (
-      day_list[c].getDate().getDate() == today.getDate() &&
-      day_list[c].getDate().getMonth() == today.getMonth() &&
-      day_list[c].getDate().getFullYear() == today.getFullYear()
-    ) {
+    } else if (isSameDate(day_list[c].getDate(), today)) {
       // mark as today
       cell.id = "today";
     } else {

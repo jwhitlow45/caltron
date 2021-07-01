@@ -16,6 +16,14 @@ function getAfterPaddingDays(date) {
   return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month);
 }
 
+function isSameDate(first_date, second_date) {
+  return (
+    first_date.getDate() == second_date.getDate() &&
+    first_date.getMonth() == second_date.getMonth() &&
+    first_date.getFullYear() == second_date.getFullYear()
+  );
+}
+
 /*------HTML helper functions------*/
 //remove all children from a div
 function removeChildren(parent) {
