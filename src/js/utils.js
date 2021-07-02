@@ -13,6 +13,12 @@ function isSameDate(first_date, second_date) {
   );
 }
 
+//set calendar rows based on display mode
+function setCalendarRows() {
+  if (cur_display_mode == "monthly") rows = 6;
+  else if (cur_display_mode == "weekly") rows = 1;
+}
+
 /*------HTML helper functions------*/
 //remove all children from a div
 function removeChildren(parent) {

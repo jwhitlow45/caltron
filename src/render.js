@@ -26,7 +26,8 @@ function moveRight() {
 function toggleView() {
   cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
   cur_display_mode = display_modes[cur_display_mode_num];
-  refreshCalendar();
+  setCalendarRows();  //change calendar rows to match display mode
+  refreshCalendar();  //redraw calendar header and grid
 }
 
 /*------Button helper functions------*/
@@ -84,6 +85,8 @@ function refreshCalendar() {
   } else if (cur_display_mode == "weekly") {
     //refresh calendar header
     setWeekDateTitle();
+    //recreate calendar grid
+    makeWeekCalendarGrid();
   }
 }
 

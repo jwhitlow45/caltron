@@ -20,6 +20,38 @@ function setWeekDateTitle() {
     getWeekOfYear(cur_week);
 }
 
+//create day list for current week
+function createWeekDayList() {
+  var cur_day = new Date(cur_week);
+  for (c = 0; c < rows * cols; c++) {
+    day_list.push(new Day(new Date(cur_day), false));
+    cur_day.setDate(cur_day.getDate() + 1);
+  }
+}
+
+//draw week view grid
+function makeWeekCalendarGrid() {
+  const calendar_grid = document.getElementById("calendar-grid");
+
+  createWeekDayList();
+
+  calendar_grid.style.setProperty("--grid-rows", rows);
+  calendar_grid.style.setProperty("--grid-cols", cols);
+
+  for (c = 0; c < rows * cols; c++) {
+    let cell = document.createElement("div");
+    cell.innerText = day_list[c].getDate().getDate();
+
+    if (isSameDate(day_list[c].getDate(), today)) {
+      cell.id = "today";
+    } else {
+      cell.id = "day";
+    }
+
+    calendar_grid.appendChild(cell).className = "column";
+  }
+}
+
 /*------Helper functions------*/
 //gets first day of year
 function getFirstDayOfWeek(date) {
