@@ -3,11 +3,15 @@ const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
 const view_toggle = document.getElementById("view-toggle-button");
 const cal_jump = document.getElementById("calendar-jump");
+const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
+const cal_jump_right_arrow = document.getElementById("cal-jump-right-arrow");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
 view_toggle.addEventListener("click", toggleView);
 cal_jump.addEventListener("click", toggleCalJumpDropdown);
+cal_jump_left_arrow.addEventListener("click", moveYearLeft);
+cal_jump_right_arrow.addEventListener("click", moveYearRight);
 
 /*------Button behavior------*/
 // move calendar back one month
@@ -42,11 +46,7 @@ function toggleView() {
 
 function toggleCalJumpDropdown() {
   const cal_jump = document.getElementById("calendar-jump");
-  if (cal_jump.className == "dropdown") {
-    cal_jump.className = "dropdown is-active";
-  } else {
-    cal_jump.className = "dropdown";
-  }
+  cal_jump.classList.toggle("is-active");
 }
 
 /*------Button helper functions------*/
@@ -74,6 +74,15 @@ function decWeek() {
   prev_week.setDate(cur_week.getDate() - 7);
 }
 
+function moveYearLeft() {
+  cur_cal_jump_year.setFullYear(cur_cal_jump_year.getFullYear() - 1);
+  drawCalJumpYear();
+}
+
+function moveYearRight() {
+  cur_cal_jump_year.setFullYear(cur_cal_jump_year.getFullYear() + 1);
+  drawCalJumpYear();
+}
 /*------UI Functions------*/
 //refresh calendar state
 //creates header with weekday titles
