@@ -1,11 +1,13 @@
 /*------Event listeners------*/
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
-const view_toggle = document.getElementById("view-toggle");
+const view_toggle = document.getElementById("view-toggle-button");
+const cal_jump = document.getElementById("calendar-jump");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
 view_toggle.addEventListener("click", toggleView);
+cal_jump.addEventListener("click", toggleCalJumpDropdown);
 
 /*------Button behavior------*/
 // move calendar back one month
@@ -36,6 +38,15 @@ function toggleView() {
   }
   setCalendarRows(); //change calendar rows to match display mode
   refreshCalendar(); //redraw calendar header and grid
+}
+
+function toggleCalJumpDropdown() {
+  const cal_jump = document.getElementById("calendar-jump");
+  if (cal_jump.className == "dropdown") {
+    cal_jump.className = "dropdown is-active";
+  } else {
+    cal_jump.className = "dropdown";
+  }
 }
 
 /*------Button helper functions------*/
@@ -98,10 +109,12 @@ function refreshCalendar() {
 
 //functions to run on startup
 function startup() {
-  initMonths(today);
-  initWeeks(today);
-  makeWeekdayHeader();
-  refreshCalendar();
+  initMonths(today); //init current month
+  initWeeks(today); //init current week
+  makeWeekdayHeader(); //draw header with days of week
+  refreshCalendar(); //draw calendar
+  drawMonthSelection(); //draw months in cal jump grid
+  drawCalJumpYear(); //draw year in cal jump grid
 }
 
 startup();
