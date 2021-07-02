@@ -4,7 +4,7 @@ const cols = 7;
 var rows = 6;
 
 //first day of the week
-var first_day_of_week = 6;
+var first_day_of_week = 0;
 
 display_modes = ["monthly", "weekly"];
 cur_display_mode_num = 0;
