@@ -4,24 +4,26 @@ function getDaysInMonth(date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 }
 
-//gets number of padding days before a certain month
-function getBeforePaddingDays(date) {
-  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  if (padding_days == 0) padding_days = 7;
-  return padding_days;
-}
-
-//gets number of padding days after a certain month
-function getAfterPaddingDays(date) {
-  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month);
-}
-
+//check if two dats have the same day, month, and year
 function isSameDate(first_date, second_date) {
   return (
     first_date.getDate() == second_date.getDate() &&
     first_date.getMonth() == second_date.getMonth() &&
     first_date.getFullYear() == second_date.getFullYear()
   );
+}
+
+function isSameMonth(first_date, second_date) {
+  return (
+    first_date.getMonth() == second_date.getMonth() &&
+    first_date.getFullYear() == second_date.getFullYear()
+  );
+}
+
+//set calendar rows based on display mode
+function setCalendarRows() {
+  if (cur_display_mode == "monthly") rows = 6;
+  else if (cur_display_mode == "weekly") rows = 1;
 }
 
 /*------HTML helper functions------*/

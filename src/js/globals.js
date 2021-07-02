@@ -3,6 +3,13 @@
 const cols = 7;
 var rows = 6;
 
+//first day of the week
+var first_day_of_week = 0;
+
+display_modes = ["monthly", "weekly"];
+cur_display_mode_num = 0;
+cur_display_mode = display_modes[cur_display_mode_num];
+
 //list of days
 day_list = [];
 
@@ -34,9 +41,3 @@ const months = [
 ];
 
 var today = new Date(); //today
-var cur_month = new Date(); //month of current calendar view
-cur_month.setDate(1); //set to first of month to avoid conflict with certain months
-var prev_month = new Date(cur_month);
-prev_month.setMonth(cur_month.getMonth() - 1);
-var next_month = new Date(cur_month);
-next_month.setMonth(cur_month.getMonth() + 1)

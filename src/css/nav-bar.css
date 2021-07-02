@@ -1,0 +1,50 @@
+/* month selector */
+#nav-bar {
+  /* alignment */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  /* sizing */
+  font-size: 1.25em;
+
+  /* spacing */
+  margin: 1em;
+  padding-left: 0.5em;
+  text-align: center;
+}
+
+#date {
+  /* spacing */
+  line-height: 0.75em;
+  margin-left: 0.5em;
+
+  /* colors */
+  color: var(--month-font-color);
+}
+
+#arrow {
+  color: var(--arrow-button-color);
+}
+
+#arrow:focus {
+  color: var(--arrow-button-click-color);
+}
+
+#arrow:hover {
+  cursor: pointer;
+}
+
+#view-toggle,
+#calendar-jump {
+  /* spacing */
+  margin-right: 1em;
+
+  /* colors */
+  color: var(--view-toggle-button-color);
+}
+
+#view-toggle-icon,
+#calendar-jump-icon {
+  color: var(--view-toggle-icon-color);
+}
