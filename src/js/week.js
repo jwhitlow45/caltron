@@ -9,6 +9,7 @@ next_week.setDate(cur_week.getDate() + 7);
 //set date title to proper week, month, and year
 function setWeekDateTitle() {
   const week_header = document.getElementById("date");
+  week_header.style.minWidth = "400px";
   week_header.innerText =
     months[cur_week.getMonth()] +
     " " +

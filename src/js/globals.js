@@ -6,8 +6,9 @@ var rows = 6;
 //first day of the week
 var first_day_of_week = 6;
 
-display_modes = ['monthly', 'weekly'];
-cur_display_mode = display_modes[1];
+display_modes = ["monthly", "weekly"];
+cur_display_mode_num = 0;
+cur_display_mode = display_modes[cur_display_mode_num];
 
 //list of days
 day_list = [];

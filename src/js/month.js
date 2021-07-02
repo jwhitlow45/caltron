@@ -10,6 +10,7 @@ next_month.setMonth(cur_month.getMonth() + 1)
 //set date title to proper month and year
 function setMonthDateTitle() {
   const month_header = document.getElementById("date");
+  month_header.style.minWidth = "250px";
   month_header.innerText =
     months[cur_month.getMonth()] + " " + cur_month.getFullYear();
 }

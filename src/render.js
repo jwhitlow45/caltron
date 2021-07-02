@@ -1,9 +1,11 @@
 /*------Event listeners------*/
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
+const view_toggle = document.getElementById("view-toggle");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
+view_toggle.addEventListener("click", toggleView);
 
 /*------Button behavior------*/
 // move calendar back one month
@@ -20,6 +22,14 @@ function moveRight() {
   refreshCalendar();
 }
 
+// toggle monthly and weekly view in calendar
+function toggleView() {
+  cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
+  cur_display_mode = display_modes[cur_display_mode_num];
+  refreshCalendar();
+}
+
+/*------Button helper functions------*/
 function incMonth() {
   prev_month = new Date(cur_month);
   cur_month = new Date(next_month);
