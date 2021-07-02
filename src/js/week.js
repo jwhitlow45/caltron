@@ -9,15 +9,10 @@ next_week.setDate(cur_week.getDate() + 7);
 //set date title to proper week, month, and year
 function setWeekDateTitle() {
   const week_header = document.getElementById("date");
-  week_header.style.minWidth = "400px";
   week_header.innerText =
-    months[cur_week.getMonth()] +
+    months[cur_week.getMonth()].substr(0,3) +
     " " +
-    cur_week.getFullYear() +
-    " " +
-    "Week" +
-    " " +
-    getWeekOfYear(cur_week);
+    cur_week.getFullYear();
 }
 
 //create day list for current week

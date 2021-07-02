@@ -4,15 +4,14 @@ cur_month.setDate(1); //set to first of month to avoid conflict with certain mon
 var prev_month = new Date(cur_month);
 prev_month.setMonth(cur_month.getMonth() - 1);
 var next_month = new Date(cur_month);
-next_month.setMonth(cur_month.getMonth() + 1)
+next_month.setMonth(cur_month.getMonth() + 1);
 
 /*------UI Functions------*/
 //set date title to proper month and year
 function setMonthDateTitle() {
   const month_header = document.getElementById("date");
-  month_header.style.minWidth = "250px";
   month_header.innerText =
-    months[cur_month.getMonth()] + " " + cur_month.getFullYear();
+    months[cur_month.getMonth()].substr(0, 3) + " " + cur_month.getFullYear();
 }
 
 //create day list for current month
@@ -86,12 +85,19 @@ function makeMonthCalendarGrid() {
 /*------Helper functions------*/
 //gets number of padding days before a certain month
 function getBeforePaddingDays(date) {
-  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay() - first_day_of_week;
+  padding_days =
+    new Date(date.getFullYear(), date.getMonth(), 1).getDay() -
+    first_day_of_week;
   if (padding_days <= 0) padding_days += 7;
   return padding_days;
 }
 
 //gets number of padding days after a certain month
 function getAfterPaddingDays(date) {
-  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month) + first_day_of_week;
+  return (
+    42 -
+    getDaysInMonth(cur_month) -
+    getBeforePaddingDays(cur_month) +
+    first_day_of_week
+  );
 }
