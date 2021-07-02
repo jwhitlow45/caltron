@@ -10,7 +10,7 @@
 
   /* spacing */
   margin: 1em;
-  padding-left: 1em;
+  padding-left: 0.5em;
   text-align: center;
 }
 
@@ -35,7 +35,8 @@
   cursor: pointer;
 }
 
-#view-toggle {
+#view-toggle,
+#calendar-jump {
   /* spacing */
   margin-right: 1em;
 
@@ -43,6 +44,7 @@
   color: var(--view-toggle-button-color);
 }
 
-#view-toggle-icon {
+#view-toggle-icon,
+#calendar-jump-icon {
   color: var(--view-toggle-icon-color);
 }
