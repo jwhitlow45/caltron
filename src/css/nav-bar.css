@@ -12,7 +12,7 @@
 #date {
   /* spacing */
   line-height: 0.75em;
-  min-width: 250px;
+  min-width: 300px;
 
   /* colors */
   color: var(--month-font-color);

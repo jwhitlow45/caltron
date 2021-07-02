@@ -6,13 +6,25 @@ var next_week = new Date(cur_week);
 next_week.setDate(cur_week.getDate() + 7);
 
 /*------UI Functions------*/
-//set date title to proper week, month, and year
+//set date title to proper month, and year
 function setWeekDateTitle() {
   const week_header = document.getElementById("date");
-  week_header.innerText =
-    months[cur_week.getMonth()].substr(0,3) +
-    " " +
-    cur_week.getFullYear();
+  const first_day_of_week = getFirstDayOfWeek(cur_week);
+  const last_day_of_week = getLastDayOfWeek(cur_week);
+  var header_string = "";
+
+  //add month of first day of week
+  header_string += months[cur_week.getMonth()].substr(0, 3) + " ";
+  //add year to first month if week covers two years
+  if (first_day_of_week.getFullYear() != last_day_of_week.getFullYear())
+    header_string += first_day_of_week.getFullYear() + " ";
+  //add second month if week covers two months
+  if (first_day_of_week.getMonth() != last_day_of_week.getMonth())
+    header_string +=
+      "- " + months[last_day_of_week.getMonth()].substr(0, 3) + " ";
+  header_string += last_day_of_week.getFullYear();
+
+  week_header.innerText = header_string;
 }
 
 //create day list for current week
@@ -48,22 +60,26 @@ function makeWeekCalendarGrid() {
 }
 
 /*------Helper functions------*/
-//gets first day of year
+//gets first day of week
 function getFirstDayOfWeek(date) {
   const day = date.getDay();
   var temp_date = new Date(date);
-  if (day == first_day_of_week) {
-    return temp_date;
-  } else if (day > first_day_of_week) {
-    // set date to first day of the week and return
+
+  // set date to first day of the week and return
+  if (day > first_day_of_week) {
     temp_date.setDate(temp_date.getDate() - Math.abs(day - first_day_of_week));
-    return temp_date;
   } else if (day < first_day_of_week) {
     temp_date.setDate(
       temp_date.getDate() - Math.abs(7 + day - first_day_of_week)
     );
-    return temp_date;
   }
+  return temp_date;
+}
+
+function getLastDayOfWeek(date) {
+  var temp_date = getFirstDayOfWeek(date);
+  temp_date.setDate(temp_date.getDate() + 6);
+  return temp_date;
 }
 
 //get week of year given a date
