@@ -8,18 +8,42 @@ right_arrow.addEventListener("click", moveRight);
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  next_month = new Date(cur_month);
-  cur_month = new Date(prev_month);
-  prev_month.setMonth(cur_month.getMonth() - 1);
+  if (cur_display_mode == "monthly") decMonth();
+  else if (cur_display_mode == "weekly") decWeek();
   refreshCalendar();
 }
 
 // move calendar forward one month
 function moveRight() {
+  if (cur_display_mode == "monthly") incMonth();
+  else if (cur_display_mode == "weekly") incWeek();
+  refreshCalendar();
+}
+
+function incMonth() {
   prev_month = new Date(cur_month);
   cur_month = new Date(next_month);
   next_month.setMonth(cur_month.getMonth() + 1);
-  refreshCalendar();
+}
+
+function decMonth() {
+  next_month = new Date(cur_month);
+  cur_month = new Date(prev_month);
+  prev_month.setMonth(cur_month.getMonth() - 1);
+}
+
+function incWeek() {
+  prev_week = new Date(cur_week);
+  cur_week = new Date(next_week);
+  next_week.setDate(cur_week.getDate() + 7);
+  if (cur_week.getMonth() == 11 && next_week.getMonth() == 0)
+    next_week.setFullYear(next_week.getFullYear() + 1);
+}
+
+function decWeek() {
+  next_week = new Date(cur_week);
+  cur_week = new Date(prev_week);
+  prev_week.setDate(cur_week.getDate() - 7);
 }
 
 /*------UI Functions------*/
@@ -42,15 +66,14 @@ function refreshCalendar() {
   removeChildren(calendar_grid);
   //clear out day list deleting objects along the way
   day_list.splice(0, day_list.length);
-  if (cur_display_mode == "weekly") {
-    //refresh calendar header
-    setWeekDateTitle();
-
-  } else if (cur_display_mode == "monthly") {
+  if (cur_display_mode == "monthly") {
     //refresh calendar header
     setMonthDateTitle();
     //recreate calendar grid
     makeMonthCalendarGrid();
+  } else if (cur_display_mode == "weekly") {
+    //refresh calendar header
+    setWeekDateTitle();
   }
 }
 
