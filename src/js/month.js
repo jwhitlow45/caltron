@@ -73,3 +73,16 @@ function makeMonthCalendarGrid() {
     calendar_grid.appendChild(cell).className = "column";
   }
 }
+
+/*------Helper functions------*/
+//gets number of padding days before a certain month
+function getBeforePaddingDays(date) {
+  padding_days = new Date(date.getFullYear(), date.getMonth(), 1).getDay() - first_day_of_week;
+  if (padding_days <= 0) padding_days += 7;
+  return padding_days;
+}
+
+//gets number of padding days after a certain month
+function getAfterPaddingDays(date) {
+  return 42 - getDaysInMonth(cur_month) - getBeforePaddingDays(cur_month) + first_day_of_week;
+}
