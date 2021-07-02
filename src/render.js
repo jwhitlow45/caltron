@@ -26,8 +26,16 @@ function moveRight() {
 function toggleView() {
   cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
   cur_display_mode = display_modes[cur_display_mode_num];
-  setCalendarRows();  //change calendar rows to match display mode
-  refreshCalendar();  //redraw calendar header and grid
+  if (cur_display_mode == "monthly") {
+    initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
+  } else if (
+    cur_display_mode == "weekly" &&
+    !isSameMonth(getLastDayOfWeek(cur_week), cur_month)
+  ) {
+    initWeeks(cur_month); //jump weeks to first week of current month
+  }
+  setCalendarRows(); //change calendar rows to match display mode
+  refreshCalendar(); //redraw calendar header and grid
 }
 
 /*------Button helper functions------*/

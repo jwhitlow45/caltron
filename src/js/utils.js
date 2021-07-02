@@ -13,6 +13,13 @@ function isSameDate(first_date, second_date) {
   );
 }
 
+function isSameMonth(first_date, second_date) {
+  return (
+    first_date.getMonth() == second_date.getMonth() &&
+    first_date.getFullYear() == second_date.getFullYear()
+  );
+}
+
 //set calendar rows based on display mode
 function setCalendarRows() {
   if (cur_display_mode == "monthly") rows = 6;
