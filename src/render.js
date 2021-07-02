@@ -8,7 +8,7 @@ right_arrow.addEventListener("click", moveRight);
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  next_month  = new Date(cur_month);
+  next_month = new Date(cur_month);
   cur_month = new Date(prev_month);
   prev_month.setMonth(cur_month.getMonth() - 1);
   refreshCalendar();
@@ -40,12 +40,18 @@ function refreshCalendar() {
   const calendar_grid = document.getElementById("calendar-grid");
   //remove all contents from div
   removeChildren(calendar_grid);
-  //refresh calendar header
-  setMonthDateTitle();
   //clear out day list deleting objects along the way
-  day_list.splice(0, day_list.length)
-  //recreate calendar grid
-  makeMonthCalendarGrid();
+  day_list.splice(0, day_list.length);
+  if (cur_display_mode == "weekly") {
+    //refresh calendar header
+    setWeekDateTitle();
+
+  } else if (cur_display_mode == "monthly") {
+    //refresh calendar header
+    setMonthDateTitle();
+    //recreate calendar grid
+    makeMonthCalendarGrid();
+  }
 }
 
 //functions to run on startup

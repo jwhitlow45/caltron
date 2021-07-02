@@ -1,3 +1,11 @@
+// Month view variables
+var cur_month = new Date(); //month of current calendar view
+cur_month.setDate(1); //set to first of month to avoid conflict with certain months
+var prev_month = new Date(cur_month);
+prev_month.setMonth(cur_month.getMonth() - 1);
+var next_month = new Date(cur_month);
+next_month.setMonth(cur_month.getMonth() + 1)
+
 /*------UI Functions------*/
 //set date title to proper month and year
 function setMonthDateTitle() {
