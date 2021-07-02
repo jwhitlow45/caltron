@@ -44,42 +44,8 @@
   background-color: var(--view-toggle-button-color);
 }
 
+/* icons */
 #view-toggle-icon,
 #calendar-jump-icon {
   color: var(--view-toggle-icon-color);
-}
-
-#cal-jump-grid {
-  /* spacing */
-  margin-top: 0.125em;
-  padding: 0.5em;
-  line-height: 1.5em;
-
-  /* sizing */
-  width: fit-content;
-  height: fit-content;
-
-  /* shapes */
-  border-radius: 0.25em;
-
-  /* colors */
-  background-image: var(--cal-jump-grid-background-color);
-  background-color: var(--cal-jump-grid-background-color);
-}
-
-#cal-jump-grid-element {
-  /* spacing */
-  margin: 0.5em;
-  padding: 0.25em;
-  margin-top: 100px;
-
-  /* shapes */
-  border-radius: 0.25em;
-
-  /* colors */
-  color: var(--cal-jump-grid-font-color);
-}
-
-#cal-jump-grid-element:hover {
-  background-color: var(--cal-jump-grid-hover-color);
 }
