@@ -10,7 +10,11 @@
 
   /* arrow colors */
   --arrow-button-color: #e0ddcf;
-  --arrow-button-click-color: #000000;
+  --arrow-button-click-color: black;
+
+  /* button colors */
+  --view-toggle-button-color: #e0ddcf;
+  --view-toggle-icon-color: #474448;
 
   /* font colors */
   --month-font-color: #f1f0ea;

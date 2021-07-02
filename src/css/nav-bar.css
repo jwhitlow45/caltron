@@ -29,3 +29,16 @@
 #arrow:hover {
   cursor: pointer;
 }
+
+#view-toggle {
+  /* spacing */
+  margin: 1em;
+  margin-top: 0px;
+
+  /* colors */
+  color: var(--view-toggle-button-color);
+}
+
+#view-toggle-icon {
+  color: var(--view-toggle-icon-color);
+}
