@@ -47,8 +47,6 @@ function incWeek() {
   prev_week = new Date(cur_week);
   cur_week = new Date(next_week);
   next_week.setDate(cur_week.getDate() + 7);
-  if (cur_week.getMonth() == 11 && next_week.getMonth() == 0)
-    next_week.setFullYear(next_week.getFullYear() + 1);
 }
 
 function decWeek() {
