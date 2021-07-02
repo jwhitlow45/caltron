@@ -1,18 +1,23 @@
 /* month selector */
 #nav-bar {
+  /* alignment */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
   /* sizing */
   font-size: 1.25em;
-  min-width: 754px;
 
   /* spacing */
-  padding-top: 1em;
+  margin: 1em;
+  padding-left: 1em;
   text-align: center;
 }
 
 #date {
   /* spacing */
   line-height: 0.75em;
-  min-width: 300px;
+  margin-left: 0.5em;
 
   /* colors */
   color: var(--month-font-color);
@@ -32,8 +37,7 @@
 
 #view-toggle {
   /* spacing */
-  margin: 1em;
-  margin-top: 0px;
+  margin-right: 1em;
 
   /* colors */
   color: var(--view-toggle-button-color);
