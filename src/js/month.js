@@ -1,10 +1,16 @@
 // Month view variables
-var cur_month = new Date(); //month of current calendar view
-cur_month.setDate(1); //set to first of month to avoid conflict with certain months
-var prev_month = new Date(cur_month);
-prev_month.setMonth(cur_month.getMonth() - 1);
-var next_month = new Date(cur_month);
-next_month.setMonth(cur_month.getMonth() + 1);
+var cur_month; //month of current calendar view
+var prev_month;
+var next_month;
+
+function initMonths(date) {
+  cur_month = new Date(date); //copy passed date to be in cur month
+  cur_month.setDate(1); //set to first of month to avoid conflict with certain months
+  prev_month = new Date(cur_month); //copy cur month to prev month
+  prev_month.setMonth(cur_month.getMonth() - 1); //move back prev month by one month
+  next_month = new Date(cur_month); //copy cur month to next month
+  next_month.setMonth(cur_month.getMonth() + 1); //move forward next month by one month
+}
 
 /*------UI Functions------*/
 //set date title to proper month and year

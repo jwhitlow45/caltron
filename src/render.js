@@ -90,6 +90,8 @@ function refreshCalendar() {
 
 //functions to run on startup
 function startup() {
+  initMonths(today);
+  initWeeks(today);
   makeWeekdayHeader();
   refreshCalendar();
 }

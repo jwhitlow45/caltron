@@ -1,9 +1,15 @@
 // Week view variables
-var cur_week = getFirstDayOfWeek(new Date());
-var prev_week = new Date(cur_week);
-prev_week.setDate(cur_week.getDate() - 7);
-var next_week = new Date(cur_week);
-next_week.setDate(cur_week.getDate() + 7);
+var cur_week;
+var prev_week;
+var next_week;
+
+function initWeeks(date) {
+  cur_week = getFirstDayOfWeek(new Date(date));
+  prev_week = new Date(cur_week);
+  prev_week.setDate(cur_week.getDate() - 7);
+  next_week = new Date(cur_week);
+  next_week.setDate(cur_week.getDate() + 7);
+}
 
 /*------UI Functions------*/
 //set date title to proper month, and year
