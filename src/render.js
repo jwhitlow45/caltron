@@ -2,7 +2,7 @@
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
 const view_toggle = document.getElementById("view-toggle-button");
-const cal_jump = document.getElementById("calendar-jump");
+const cal_jump = document.getElementById("calendar-jump-button");
 const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
 const cal_jump_right_arrow = document.getElementById("cal-jump-right-arrow");
 
@@ -45,8 +45,10 @@ function toggleView() {
 }
 
 function toggleCalJumpDropdown() {
-  const cal_jump = document.getElementById("calendar-jump");
-  cal_jump.classList.toggle("is-active");
+  const cal_jump = document.getElementById("cal-jump-grid");
+  if (cal_jump.style.visibility == "visible")
+    cal_jump.style.visibility = "hidden";
+  else cal_jump.style.visibility = "visible";
 }
 
 /*------Button helper functions------*/

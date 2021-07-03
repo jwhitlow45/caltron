@@ -27,21 +27,14 @@
         ><span class="icon"
           ><i id="view-toggle-icon" class="far fa-calendar"></i></span
       ></a>
-      <div id="calendar-jump" class="dropdown">
-        <div class="dropdown-trigger">
-          <a
-            id="calendar-jump-button"
-            class="button is-regular"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu"
-          >
-            <span class="icon"
-              ><i id="calendar-jump-icon" class="far fa-calendar"></i
-            ></span>
-          </a>
-        </div>
-        <div id="cal-jump-grid" class="dropdown-menu is-hoverable" role="menu">
-          <span class="icon-text">
+      <div id="calendar-jump">
+        <a id="calendar-jump-button" class="button is-regular">
+          <span class="icon"
+            ><i id="calendar-jump-icon" class="far fa-calendar"></i
+          ></span>
+        </a>
+        <div id="cal-jump-grid">
+          <span id="cal-jump-header" class="icon-text">
             <span id="cal-jump-left-arrow" class="icon"
               ><i id="cal-jump-arrow" class="fas fa-arrow-left"></i
             ></span>
@@ -50,7 +43,7 @@
               ><i id="cal-jump-arrow" class="fas fa-arrow-right"></i
             ></span>
           </span>
-          <br>
+          <br />
         </div>
       </div>
       <span class="icon-text">
