@@ -15,8 +15,7 @@ class CalendarJump {
 
   // updates calendar jump year innertext to current calendar jump year
   static drawYear = () => {
-    document.getElementById("cal-jump-year").innerText =
-      cur_year.getFullYear();
+    document.getElementById("cal-jump-year").innerText = cur_year.getFullYear();
   };
 
   // creates html for cal jump grid where users select month to jump to
@@ -87,15 +86,13 @@ class CalendarJump {
     cal_jump_left_arrow.addEventListener("click", this.moveYearLeft);
     cal_jump_right_arrow.addEventListener("click", this.moveYearRight);
 
-    const outer_this = this;  //store this as element overwrites this
+    const outer_this = this; //store this as element overwrites this
     cal_jump_months.forEach(function (element) {
       element.addEventListener("click", function (event) {
         // strip element id of all non-numeric characters
         var str_month = this.id.replace(/\D/g, "");
         // jump to selected date in calendar jump div
-        outer_this.jumpToDate(
-          new Date(cur_year.getFullYear(), str_month, 1)
-        );
+        outer_this.jumpToDate(new Date(cur_year.getFullYear(), str_month, 1));
       });
     });
   };

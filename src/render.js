@@ -98,12 +98,13 @@ function refreshCalendar() {
     //refresh calendar header
     Week.setDateTitle();
   }
+  //redraw calendar grid
   makeCalendarGrid();
 }
 
 //functions to run on startup
 function startup() {
-  Month.initMonths(today);
+  Month.initMonths(today); //init current month
   Week.initWeeks(today); //init current week
   makeWeekdayHeader(); //draw header with days of week
   refreshCalendar(); //draw calendar
