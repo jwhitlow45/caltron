@@ -41,6 +41,9 @@ body {
   /* sizing */
   height: 100%;
 
+  /* stop user from selecting elements */
+  user-select: none;
+
   /* colors */
   background-color: var(--background-color);
 }
