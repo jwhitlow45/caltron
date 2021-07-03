@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-#cal-jump-grid-month {
+.cal-jump-month {
   /* spacing */
   margin: 0.5em;
   padding: 0.25em;
@@ -49,6 +49,6 @@
   color: var(--cal-jump-grid-font-color);
 }
 
-#cal-jump-grid-month:hover {
+.cal-jump-month:hover {
   background-color: var(--cal-jump-grid-hover-color);
 }

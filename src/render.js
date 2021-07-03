@@ -7,7 +7,8 @@ left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
 view_toggle.addEventListener("click", toggleView);
 
-calJumpEventListeners();
+// some event listeners are ran in startup() for dynamically populated elements
+
 
 /*------Button behavior------*/
 // move calendar back one month
@@ -115,6 +116,8 @@ function startup() {
   refreshCalendar(); //draw calendar
   drawMonthSelection(); //draw months in cal jump grid
   drawCalJumpYear(); //draw year in cal jump grid
+  calJumpEventListeners();  //create event listeners for cal jump
+
 }
 
 startup();
