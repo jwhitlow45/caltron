@@ -3,26 +3,28 @@ cur_year = new Date(today.getFullYear(), 1, 1);
 
 class CalendarJump {
   // move current year for cal jump back one
-  moveYearLeft = () => {
+  static moveYearLeft = () => {
     cur_year.setFullYear(cur_year.getFullYear() - 1);
     this.drawYear();
   };
 
-  moveYearRight = () => {
+  static moveYearRight = () => {
     cur_year.setFullYear(cur_year.getFullYear() + 1);
     this.drawYear();
   };
 
   // updates calendar jump year innertext to current calendar jump year
-  drawYear = () => {
+  static drawYear = () => {
     document.getElementById("cal-jump-year").innerText =
       cur_year.getFullYear();
   };
 
   // creates html for cal jump grid where users select month to jump to
-  drawMonthSelection = () => {
+  static drawMonthSelection = () => {
     // select calendar jump grid to insert elements
     const cal_jump_grid = document.getElementById("cal-jump-grid");
+
+    this.drawYear();
 
     for (let i = 0; i < cal_jump_rows; i++) {
       let cell; // assert cell to modify and append to calendar jump grid
@@ -40,10 +42,12 @@ class CalendarJump {
       //create line break
       cal_jump_grid.appendChild(document.createElement("br"));
     }
+
+    this.eventListeners();
   };
 
   // toggle calendar jump dropdown when button is clicked
-  toggleDropdown = () => {
+  static toggleDropdown = () => {
     const cal_jump = document.getElementById("cal-jump-grid");
     if (cal_jump.style.visibility == "visible")
       cal_jump.style.visibility = "hidden";
@@ -51,13 +55,13 @@ class CalendarJump {
   };
 
   // jump to date in calendar
-  jumpToDate = (date) => {
+  static jumpToDate = (date) => {
     // jump using cur month if month is being displayed or
     // jump to cur week if week is being displayed
     if (cur_display_mode == "monthly") {
-      cur_month = new Date(date);
+      Month.initMonths(date);
     } else if (cur_display_mode == "weekly") {
-      cur_week = new Date(getFirstDayOfWeek(date));
+      Week.initWeeks(date);
     }
     // close calendar drop down when jump occurs
     this.toggleDropdown();
@@ -68,7 +72,7 @@ class CalendarJump {
   highlightCurrentMonth = () => {};
 
   //event listeners for calendar jump div
-  eventListeners = () => {
+  static eventListeners = () => {
     const cal_jump = document.getElementById("calendar-jump-button");
     const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
     const cal_jump_right_arrow = document.getElementById(

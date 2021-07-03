@@ -9,22 +9,18 @@ view_toggle.addEventListener("click", toggleView);
 
 // some event listeners are ran in startup() for dynamically populated elements
 
-/*------Objects------*/
-MO = new Month();
-CJ = new CalendarJump();
-
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  if (cur_display_mode == "monthly") MO.decMonth();
-  else if (cur_display_mode == "weekly") decWeek();
+  if (cur_display_mode == "monthly") Month.decMonth();
+  else if (cur_display_mode == "weekly") Week.decWeek();
   refreshCalendar();
 }
 
 // move calendar forward one month
 function moveRight() {
-  if (cur_display_mode == "monthly") MO.incMonth();
-  else if (cur_display_mode == "weekly") incWeek();
+  if (cur_display_mode == "monthly") Month.incMonth();
+  else if (cur_display_mode == "weekly") Week.incWeek();
   refreshCalendar();
 }
 
@@ -33,30 +29,15 @@ function toggleView() {
   cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
   cur_display_mode = display_modes[cur_display_mode_num];
   if (cur_display_mode == "monthly") {
-    MO.initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
+    Month.initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
   } else if (
     cur_display_mode == "weekly" &&
     !isSameMonth(getLastDayOfWeek(cur_week), cur_month)
   ) {
-    initWeeks(cur_month); //jump weeks to first week of current month
+    Week.initWeeks(cur_month); //jump weeks to first week of current month
   }
   setCalendarRows(); //change calendar rows to match display mode
   refreshCalendar(); //redraw calendar header and grid
-}
-
-/*------Button helper functions------*/
-
-
-function incWeek() {
-  prev_week = new Date(cur_week);
-  cur_week = new Date(next_week);
-  next_week.setDate(cur_week.getDate() + 7);
-}
-
-function decWeek() {
-  next_week = new Date(cur_week);
-  cur_week = new Date(prev_week);
-  prev_week.setDate(cur_week.getDate() - 7);
 }
 
 /*------UI Functions------*/
@@ -72,6 +53,37 @@ function makeWeekdayHeader() {
   }
 }
 
+//draw month view grid
+function makeCalendarGrid() {
+  const calendar_grid = document.getElementById("calendar-grid");
+
+  if (cur_display_mode == "monthly") {
+    Month.createDayList();
+  } else if (cur_display_mode == "weekly") {
+    Week.createDayList();
+  }
+
+  calendar_grid.style.setProperty("--grid-rows", rows);
+  calendar_grid.style.setProperty("--grid-cols", cols);
+
+  for (let c = 0; c < rows * cols; c++) {
+    let cell = document.createElement("div");
+    cell.innerText = day_list[c].getDate().getDate();
+
+    if (day_list[c].getIsPadding() && cur_display_mode == "monthly") {
+      // mark as padding day
+      cell.id = "padding";
+    } else if (isSameDate(day_list[c].getDate(), today)) {
+      // mark as today
+      cell.id = "today";
+    } else {
+      // mark as day in cur month
+      cell.id = "day";
+    }
+    calendar_grid.appendChild(cell).className = "column";
+  }
+}
+
 function refreshCalendar() {
   //select calendar grid
   const calendar_grid = document.getElementById("calendar-grid");
@@ -81,26 +93,21 @@ function refreshCalendar() {
   day_list.splice(0, day_list.length);
   if (cur_display_mode == "monthly") {
     //refresh calendar header
-    MO.setDateTitle();
-    //recreate calendar grid
-    MO.makeCalendarGrid();
+    Month.setDateTitle();
   } else if (cur_display_mode == "weekly") {
     //refresh calendar header
-    setWeekDateTitle();
-    //recreate calendar grid
-    makeWeekCalendarGrid();
+    Week.setDateTitle();
   }
+  makeCalendarGrid();
 }
 
 //functions to run on startup
 function startup() {
-  MO.initMonths(today);
-  initWeeks(today); //init current week
+  Month.initMonths(today);
+  Week.initWeeks(today); //init current week
   makeWeekdayHeader(); //draw header with days of week
   refreshCalendar(); //draw calendar
-  CJ.drawMonthSelection(); //draw months in cal jump grid
-  CJ.drawYear(); //draw year in cal jump grid
-  CJ.eventListeners(); //create event listeners for cal jump
+  CalendarJump.drawMonthSelection(); //draw months in cal jump grid
 }
 
 startup();
