@@ -9,7 +9,6 @@ view_toggle.addEventListener("click", toggleView);
 
 // some event listeners are ran in startup() for dynamically populated elements
 
-
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
@@ -66,15 +65,6 @@ function decWeek() {
   prev_week.setDate(cur_week.getDate() - 7);
 }
 
-function moveYearLeft() {
-  cur_cal_jump_year.setFullYear(cur_cal_jump_year.getFullYear() - 1);
-  drawCalJumpYear();
-}
-
-function moveYearRight() {
-  cur_cal_jump_year.setFullYear(cur_cal_jump_year.getFullYear() + 1);
-  drawCalJumpYear();
-}
 /*------UI Functions------*/
 //refresh calendar state
 //creates header with weekday titles
@@ -114,10 +104,10 @@ function startup() {
   initWeeks(today); //init current week
   makeWeekdayHeader(); //draw header with days of week
   refreshCalendar(); //draw calendar
-  drawMonthSelection(); //draw months in cal jump grid
-  drawCalJumpYear(); //draw year in cal jump grid
-  calJumpEventListeners();  //create event listeners for cal jump
-
+  CJ = new CalendarJump();
+  CJ.drawMonthSelection(); //draw months in cal jump grid
+  CJ.drawYear(); //draw year in cal jump grid
+  CJ.eventListeners(CJ); //create event listeners for cal jump
 }
 
 startup();
