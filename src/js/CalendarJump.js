@@ -24,6 +24,7 @@ class CalendarJump {
     // select calendar jump grid to insert elements
     const cal_jump_grid = document.getElementById("cal-jump-grid");
 
+    //draw year between arrows
     this.drawYear();
 
     for (let i = 0; i < cal_jump_rows; i++) {
@@ -42,7 +43,7 @@ class CalendarJump {
       //create line break
       cal_jump_grid.appendChild(document.createElement("br"));
     }
-
+    //add event listeners
     this.eventListeners();
   };
 
