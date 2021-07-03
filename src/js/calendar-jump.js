@@ -1,22 +1,22 @@
-class CalendarJump {
-  // current year showing in calendar jump dropdown
-  cur_year = new Date(today.getFullYear(), 1, 1);
+// current year showing in calendar jump dropdown
+cur_year = new Date(today.getFullYear(), 1, 1);
 
+class CalendarJump {
   // move current year for cal jump back one
   moveYearLeft = () => {
-    this.cur_year.setFullYear(this.cur_year.getFullYear() - 1);
+    cur_year.setFullYear(cur_year.getFullYear() - 1);
     this.drawYear();
   };
 
   moveYearRight = () => {
-    this.cur_year.setFullYear(this.cur_year.getFullYear() + 1);
+    cur_year.setFullYear(cur_year.getFullYear() + 1);
     this.drawYear();
   };
 
   // updates calendar jump year innertext to current calendar jump year
   drawYear = () => {
     document.getElementById("cal-jump-year").innerText =
-      this.cur_year.getFullYear();
+      cur_year.getFullYear();
   };
 
   // creates html for cal jump grid where users select month to jump to
@@ -68,7 +68,7 @@ class CalendarJump {
   highlightCurrentMonth = () => {};
 
   //event listeners for calendar jump div
-  eventListeners = (object) => {
+  eventListeners = () => {
     const cal_jump = document.getElementById("calendar-jump-button");
     const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
     const cal_jump_right_arrow = document.getElementById(
@@ -82,13 +82,14 @@ class CalendarJump {
     cal_jump_left_arrow.addEventListener("click", this.moveYearLeft);
     cal_jump_right_arrow.addEventListener("click", this.moveYearRight);
 
+    const outer_this = this;  //store this as element overwrites this
     cal_jump_months.forEach(function (element) {
       element.addEventListener("click", function (event) {
         // strip element id of all non-numeric characters
         var str_month = this.id.replace(/\D/g, "");
         // jump to selected date in calendar jump div
-        object.jumpToDate(
-          new Date(object.cur_year.getFullYear(), str_month, 1)
+        outer_this.jumpToDate(
+          new Date(cur_year.getFullYear(), str_month, 1)
         );
       });
     });

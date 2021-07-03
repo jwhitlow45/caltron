@@ -9,17 +9,21 @@ view_toggle.addEventListener("click", toggleView);
 
 // some event listeners are ran in startup() for dynamically populated elements
 
+/*------Objects------*/
+MO = new Month();
+CJ = new CalendarJump();
+
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  if (cur_display_mode == "monthly") decMonth();
+  if (cur_display_mode == "monthly") MO.decMonth();
   else if (cur_display_mode == "weekly") decWeek();
   refreshCalendar();
 }
 
 // move calendar forward one month
 function moveRight() {
-  if (cur_display_mode == "monthly") incMonth();
+  if (cur_display_mode == "monthly") MO.incMonth();
   else if (cur_display_mode == "weekly") incWeek();
   refreshCalendar();
 }
@@ -29,7 +33,7 @@ function toggleView() {
   cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
   cur_display_mode = display_modes[cur_display_mode_num];
   if (cur_display_mode == "monthly") {
-    initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
+    MO.initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
   } else if (
     cur_display_mode == "weekly" &&
     !isSameMonth(getLastDayOfWeek(cur_week), cur_month)
@@ -41,17 +45,7 @@ function toggleView() {
 }
 
 /*------Button helper functions------*/
-function incMonth() {
-  prev_month = new Date(cur_month);
-  cur_month = new Date(next_month);
-  next_month.setMonth(cur_month.getMonth() + 1);
-}
 
-function decMonth() {
-  next_month = new Date(cur_month);
-  cur_month = new Date(prev_month);
-  prev_month.setMonth(cur_month.getMonth() - 1);
-}
 
 function incWeek() {
   prev_week = new Date(cur_week);
@@ -87,9 +81,9 @@ function refreshCalendar() {
   day_list.splice(0, day_list.length);
   if (cur_display_mode == "monthly") {
     //refresh calendar header
-    setMonthDateTitle();
+    MO.setDateTitle();
     //recreate calendar grid
-    makeMonthCalendarGrid();
+    MO.makeCalendarGrid();
   } else if (cur_display_mode == "weekly") {
     //refresh calendar header
     setWeekDateTitle();
@@ -100,14 +94,13 @@ function refreshCalendar() {
 
 //functions to run on startup
 function startup() {
-  initMonths(today); //init current month
+  MO.initMonths(today);
   initWeeks(today); //init current week
   makeWeekdayHeader(); //draw header with days of week
   refreshCalendar(); //draw calendar
-  CJ = new CalendarJump();
   CJ.drawMonthSelection(); //draw months in cal jump grid
   CJ.drawYear(); //draw year in cal jump grid
-  CJ.eventListeners(CJ); //create event listeners for cal jump
+  CJ.eventListeners(); //create event listeners for cal jump
 }
 
 startup();
