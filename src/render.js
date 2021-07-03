@@ -5,6 +5,7 @@ const view_toggle = document.getElementById("view-toggle-button");
 const cal_jump = document.getElementById("calendar-jump-button");
 const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
 const cal_jump_right_arrow = document.getElementById("cal-jump-right-arrow");
+const cal_jump_months = document.getElementById("cal-jump-grid-month");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);

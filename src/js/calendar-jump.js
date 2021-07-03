@@ -8,7 +8,7 @@ function drawMonthSelection() {
     for (j = 0; j < cal_jump_cols; j++) {
       cell = document.createElement("a");
       cell.innerText = months[i * cal_jump_cols + j].substr(0, 3);
-      cal_jump_grid.appendChild(cell).id = "cal-jump-grid-element";
+      cal_jump_grid.appendChild(cell).id = "cal-jump-grid-month";
     }
     cal_jump_grid.appendChild(document.createElement("br"));
   }
