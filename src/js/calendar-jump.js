@@ -1,5 +1,4 @@
 class CalendarJump {
-
   // current year showing in calendar jump dropdown
   cur_year = new Date(today.getFullYear(), 1, 1);
 
@@ -12,13 +11,13 @@ class CalendarJump {
   moveYearRight = () => {
     this.cur_year.setFullYear(this.cur_year.getFullYear() + 1);
     this.drawYear();
-  }
+  };
 
   // updates calendar jump year innertext to current calendar jump year
   drawYear = () => {
     document.getElementById("cal-jump-year").innerText =
       this.cur_year.getFullYear();
-  }
+  };
 
   // creates html for cal jump grid where users select month to jump to
   drawMonthSelection = () => {
@@ -41,7 +40,7 @@ class CalendarJump {
       //create line break
       cal_jump_grid.appendChild(document.createElement("br"));
     }
-  }
+  };
 
   // toggle calendar jump dropdown when button is clicked
   toggleDropdown = () => {
@@ -49,7 +48,7 @@ class CalendarJump {
     if (cal_jump.style.visibility == "visible")
       cal_jump.style.visibility = "hidden";
     else cal_jump.style.visibility = "visible";
-  }
+  };
 
   // jump to date in calendar
   jumpToDate = (date) => {
@@ -64,9 +63,9 @@ class CalendarJump {
     this.toggleDropdown();
     // refresh calendar to reflect month change
     refreshCalendar();
-  }
+  };
 
-  highlightCurrentMonth = () => {}
+  highlightCurrentMonth = () => {};
 
   //event listeners for calendar jump div
   eventListeners = (object) => {
@@ -88,8 +87,10 @@ class CalendarJump {
         // strip element id of all non-numeric characters
         var str_month = this.id.replace(/\D/g, "");
         // jump to selected date in calendar jump div
-        object.jumpToDate(new Date(object.cur_year.getFullYear(), str_month, 1));
+        object.jumpToDate(
+          new Date(object.cur_year.getFullYear(), str_month, 1)
+        );
       });
     });
-  }
+  };
 }
