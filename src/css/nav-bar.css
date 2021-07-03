@@ -36,7 +36,7 @@
 }
 
 #view-toggle-button,
-#calendar-jump-button {
+#cal-jump-button {
   /* spacing */
   margin-right: 1em;
 
@@ -46,6 +46,6 @@
 
 /* icons */
 #view-toggle-icon,
-#calendar-jump-icon {
+#cal-jump-icon {
   color: var(--view-toggle-icon-color);
 }
