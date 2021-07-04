@@ -3,6 +3,10 @@
 const cols = 7;
 var rows = 6;
 
+//cal grid size
+var cal_jump_cols = 3;
+var cal_jump_rows = 4;
+
 //first day of the week
 var first_day_of_week = 0;
 

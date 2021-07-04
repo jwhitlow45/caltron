@@ -13,8 +13,15 @@
   --arrow-button-click-color: #474448;
 
   /* button colors */
-  --view-toggle-button-color: #e0ddcf;
+  --view-toggle-button-color: #f1f0ea;
   --view-toggle-icon-color: #474448;
+
+  /* calendar jump grid colors */
+  --cal-jump-grid-background-color: #f1f0ea;
+  --cal-jump-grid-font-color: #474448;
+  --cal-jump-grid-hover-color: #534b52;
+  --cal-jump-year-font-color: #474448;
+  --cal-jump-arrow-color: #474448;
 
   /* font colors */
   --month-font-color: #f1f0ea;
@@ -26,13 +33,16 @@
   /* grid colors */
   --grid-day-color: #e0ddcf;
   --grid-padding-color: #534b52;
-  --grid-today-color: white;
+  --grid-today-color: #98ddfc;
 }
 
 html,
 body {
   /* sizing */
   height: 100%;
+
+  /* stop user from selecting elements */
+  user-select: none;
 
   /* colors */
   background-color: var(--background-color);

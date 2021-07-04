@@ -35,16 +35,17 @@
   cursor: pointer;
 }
 
-#view-toggle,
-#calendar-jump {
+#view-toggle-button,
+#cal-jump-button {
   /* spacing */
   margin-right: 1em;
 
   /* colors */
-  color: var(--view-toggle-button-color);
+  background-color: var(--view-toggle-button-color);
 }
 
+/* icons */
 #view-toggle-icon,
-#calendar-jump-icon {
+#cal-jump-icon {
   color: var(--view-toggle-icon-color);
 }

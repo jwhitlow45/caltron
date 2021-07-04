@@ -1,24 +1,26 @@
 /*------Event listeners------*/
 const left_arrow = document.getElementById("left-arrow");
 const right_arrow = document.getElementById("right-arrow");
-const view_toggle = document.getElementById("view-toggle");
+const view_toggle = document.getElementById("view-toggle-button");
 
 left_arrow.addEventListener("click", moveLeft);
 right_arrow.addEventListener("click", moveRight);
 view_toggle.addEventListener("click", toggleView);
 
+// some event listeners are ran in startup() for dynamically populated elements
+
 /*------Button behavior------*/
 // move calendar back one month
 function moveLeft() {
-  if (cur_display_mode == "monthly") decMonth();
-  else if (cur_display_mode == "weekly") decWeek();
+  if (cur_display_mode == "monthly") Month.decMonth();
+  else if (cur_display_mode == "weekly") Week.decWeek();
   refreshCalendar();
 }
 
 // move calendar forward one month
 function moveRight() {
-  if (cur_display_mode == "monthly") incMonth();
-  else if (cur_display_mode == "weekly") incWeek();
+  if (cur_display_mode == "monthly") Month.incMonth();
+  else if (cur_display_mode == "weekly") Week.incWeek();
   refreshCalendar();
 }
 
@@ -27,40 +29,15 @@ function toggleView() {
   cur_display_mode_num = Math.abs(cur_display_mode_num - 1);
   cur_display_mode = display_modes[cur_display_mode_num];
   if (cur_display_mode == "monthly") {
-    initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
+    Month.initMonths(getLastDayOfWeek(cur_week)); //jump months to month of current week
   } else if (
     cur_display_mode == "weekly" &&
     !isSameMonth(getLastDayOfWeek(cur_week), cur_month)
   ) {
-    initWeeks(cur_month); //jump weeks to first week of current month
+    Week.initWeeks(cur_month); //jump weeks to first week of current month
   }
   setCalendarRows(); //change calendar rows to match display mode
   refreshCalendar(); //redraw calendar header and grid
-}
-
-/*------Button helper functions------*/
-function incMonth() {
-  prev_month = new Date(cur_month);
-  cur_month = new Date(next_month);
-  next_month.setMonth(cur_month.getMonth() + 1);
-}
-
-function decMonth() {
-  next_month = new Date(cur_month);
-  cur_month = new Date(prev_month);
-  prev_month.setMonth(cur_month.getMonth() - 1);
-}
-
-function incWeek() {
-  prev_week = new Date(cur_week);
-  cur_week = new Date(next_week);
-  next_week.setDate(cur_week.getDate() + 7);
-}
-
-function decWeek() {
-  next_week = new Date(cur_week);
-  cur_week = new Date(prev_week);
-  prev_week.setDate(cur_week.getDate() - 7);
 }
 
 /*------UI Functions------*/
@@ -76,6 +53,38 @@ function makeWeekdayHeader() {
   }
 }
 
+//draw month view grid
+function makeCalendarGrid() {
+  const calendar_grid = document.getElementById("calendar-grid");
+
+  if (cur_display_mode == "monthly") {
+    Month.createDayList();
+  } else if (cur_display_mode == "weekly") {
+    Week.createDayList();
+  }
+
+  calendar_grid.style.setProperty("--grid-rows", rows);
+  calendar_grid.style.setProperty("--grid-cols", cols);
+
+  for (let c = 0; c < rows * cols; c++) {
+    let cell = document.createElement("div");
+    cell.innerText = day_list[c].getDate().getDate();
+
+    if (day_list[c].getIsPadding() && cur_display_mode == "monthly") {
+      // mark as padding day
+      cell.id = "padding";
+    } else if (isSameDate(day_list[c].getDate(), today)) {
+      // mark as today
+      cell.id = "today";
+    } else {
+      // mark as day in cur month
+      cell.id = "day";
+    }
+    calendar_grid.appendChild(cell).className = "column";
+  }
+}
+
+//refresh calendar to reflect changes from user input
 function refreshCalendar() {
   //select calendar grid
   const calendar_grid = document.getElementById("calendar-grid");
@@ -85,23 +94,22 @@ function refreshCalendar() {
   day_list.splice(0, day_list.length);
   if (cur_display_mode == "monthly") {
     //refresh calendar header
-    setMonthDateTitle();
-    //recreate calendar grid
-    makeMonthCalendarGrid();
+    Month.setDateTitle();
   } else if (cur_display_mode == "weekly") {
     //refresh calendar header
-    setWeekDateTitle();
-    //recreate calendar grid
-    makeWeekCalendarGrid();
+    Week.setDateTitle();
   }
+  //redraw calendar grid
+  makeCalendarGrid();
 }
 
 //functions to run on startup
 function startup() {
-  initMonths(today);
-  initWeeks(today);
-  makeWeekdayHeader();
-  refreshCalendar();
+  Month.initMonths(today); //init current month
+  Week.initWeeks(today); //init current week
+  makeWeekdayHeader(); //draw header with days of week
+  refreshCalendar(); //draw calendar
+  CalendarJump.drawMonthSelection(); //draw months in cal jump grid
 }
 
 startup();

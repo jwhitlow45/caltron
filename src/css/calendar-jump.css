@@ -1,0 +1,54 @@
+#cal-jump-grid {
+  /* visibility */
+  visibility:hidden;
+  
+  /* spacing */
+  position: absolute;
+  top: 3.125em;
+  padding: 0.5em;
+  line-height: 1.5em;
+  text-align: right;
+
+  /* sizing */
+  width: fit-content;
+  height: fit-content;
+
+  /* shapes */
+  border-radius: 0.25em;
+
+  /* colors */
+  background-image: var(--cal-jump-grid-background-color);
+  background-color: var(--cal-jump-grid-background-color);
+}
+
+#cal-jump-header {
+  text-align: center;
+}
+
+#cal-jump-year {
+  color: var(--cal-jump-grid-font-color);
+}
+
+#cal-jump-arrow {
+  color: var(--cal-jump-arrow-color);
+}
+
+#cal-jump-arrow:hover {
+  cursor: pointer;
+}
+
+.cal-jump-month {
+  /* spacing */
+  margin: 0.5em;
+  padding: 0.25em;
+
+  /* shapes */
+  border-radius: 0.25em;
+
+  /* colors */
+  color: var(--cal-jump-grid-font-color);
+}
+
+.cal-jump-month:hover {
+  background-color: var(--cal-jump-grid-hover-color);
+}

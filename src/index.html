@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="css/nav-bar.css" />
     <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/calendar-jump.css" />
     <link rel="stylesheet" />
     <script
       src="https://kit.fontawesome.com/78c8dda7e3.js"
@@ -14,21 +15,38 @@
     ></script>
     <script defer src="./js/globals.js"></script>
     <script defer src="./js/utils.js"></script>
-    <script defer src="./js/month.js"></script>
-    <script defer src="./js/week.js"></script>
+    <script defer src="./js/CalendarJump.js"></script>
+    <script defer src="./js/Month.js"></script>
+    <script defer src="./js/Week.js"></script>
     <script defer src="./js/Day.js"></script>
     <script defer src="render.js"></script>
   </head>
   <body>
     <div id="nav-bar">
-      <a id="view-toggle" class="button is-regular"
+      <a id="view-toggle-button" class="button is-regular"
         ><span class="icon"
-          ><i id="view-toggle-icon" class="far fa-calendar"></i></span
+          ><i id="view-toggle-icon" class="far fa-eye"></i></span
       ></a>
-      <a id="calendar-jump" class="button is-regular"
-        ><span class="icon"
-          ><i id="calendar-jump-icon" class="far fa-calendar"></i></span
-      ></a>
+      <div id="cal-jump">
+        <a id="cal-jump-button" class="button is-regular">
+          <span class="icon"
+            ><i id="cal-jump-icon" class="far fa-calendar"></i
+          ></span>
+        </a>
+        <div id="cal-jump-grid">
+          <div id="cal-jump-header">
+            <span class="icon-text">
+              <span id="cal-jump-left-arrow" class="icon"
+                ><i id="cal-jump-arrow" class="fas fa-arrow-left"></i
+              ></span>
+              <b><span id="cal-jump-year"></span></b>
+              <span id="cal-jump-right-arrow" class="icon"
+                ><i id="cal-jump-arrow" class="fas fa-arrow-right"></i
+              ></span>
+            </span>
+          </div>
+        </div>
+      </div>
       <span class="icon-text">
         <span id="left-arrow" class="icon"
           ><i id="arrow" class="fas fa-arrow-left"></i
