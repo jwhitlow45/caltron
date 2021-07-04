@@ -84,6 +84,7 @@ function makeCalendarGrid() {
   }
 }
 
+//refresh calendar to reflect changes from user input
 function refreshCalendar() {
   //select calendar grid
   const calendar_grid = document.getElementById("calendar-grid");

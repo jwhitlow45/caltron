@@ -73,7 +73,7 @@ class CalendarJump {
 
   //event listeners for calendar jump div
   static eventListeners = () => {
-    const cal_jump = document.getElementById("cal-jump-button");
+    const cal_jump_button = document.getElementById("cal-jump-button");
     const cal_jump_left_arrow = document.getElementById("cal-jump-left-arrow");
     const cal_jump_right_arrow = document.getElementById(
       "cal-jump-right-arrow"
@@ -82,7 +82,7 @@ class CalendarJump {
       document.querySelectorAll(".cal-jump-month")
     );
 
-    cal_jump.addEventListener("click", this.toggleDropdown);
+    cal_jump_button.addEventListener("click", this.toggleDropdown);
     cal_jump_left_arrow.addEventListener("click", this.moveYearLeft);
     cal_jump_right_arrow.addEventListener("click", this.moveYearRight);
 
